@@ -36,6 +36,9 @@ class Error
     #[ORM\Column(type:"string", length:100, nullable:true)]
     private $entorno;
 
+    #[ORM\Column(type:"string", length:100, nullable:true)]
+    private $contenedor;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -156,6 +159,22 @@ class Error
     public function setEntorno($entorno): void
     {
         $this->entorno = $entorno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContenedor()
+    {
+        return $this->contenedor;
+    }
+
+    /**
+     * @param mixed $contenedor
+     */
+    public function setContenedor($contenedor): void
+    {
+        $this->contenedor = $contenedor;
     }
 
 

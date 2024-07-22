@@ -20,6 +20,7 @@ class ErrorController extends AbstractFOSRestController
         $ruta = $raw['ruta']??null;
         $traza = $raw['traza']??null;
         $entorno = $raw['entorno']??null;
+        $contenedor = $raw['contenedor']??null;
         if($mensaje) {
             $arError = new Error();
             $arError->setFecha(new \DateTime('now'));
@@ -29,6 +30,7 @@ class ErrorController extends AbstractFOSRestController
             $arError->setRuta($ruta);
             $arError->setTraza($traza);
             $arError->setEntorno($entorno);
+            $arError->setContenedor($contenedor);
             $em->persist($arError);
             $em->flush();
             return [
