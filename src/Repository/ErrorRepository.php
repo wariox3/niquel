@@ -13,5 +13,22 @@ class ErrorRepository extends ServiceEntityRepository
         parent::__construct($registry, Error::class);
     }
 
-
+    public function lista($raw)
+    {
+        $em = $this->getEntityManager();
+        $limiteRegistros = $raw['limiteRegistros']??100;
+        $queryBuilder = $em->createQueryBuilder()->from(Error::class, 'e')
+            ->select('e.id')
+            ->addSelect('e.fecha')
+            ->addSelect('e.archivo')
+            ->addSelect('e.mensaje')
+            ->addSelect('e.usuario')
+            ->addSelect('e.ruta')
+            ->addSelect('e.traza')
+            ->addSelect('e.entorno')
+            ->addSelect('e.contenedor')
+            ->orderBy('e.fecha', 'DESC');
+        $queryBuilder->setMaxResults($limiteRegistros);
+        return $queryBuilder->getQuery()->getResult();
+    }
 }

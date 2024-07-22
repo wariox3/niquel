@@ -41,4 +41,12 @@ class ErrorController extends AbstractFOSRestController
                 'errorMensaje' => "Faltan parametros para el consumo de la api"];
         }
     }
+
+    #[Route("/api/error/lista")]
+    public function lista(Request $request, EntityManagerInterface $em)
+    {
+        $raw = json_decode($request->getContent(), true);
+        $arErrores = $em->getRepository(Error::class)->lista($raw);
+        return $this->view(['errores' => $arErrores], 200);
+    }
 }
