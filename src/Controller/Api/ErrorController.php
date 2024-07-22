@@ -18,6 +18,8 @@ class ErrorController extends AbstractFOSRestController
         $mensaje = $raw['mensaje']??null;
         $usuario = $raw['usuario']??null;
         $ruta = $raw['ruta']??null;
+        $traza = $raw['traza']??null;
+        $entorno = $raw['entorno']??null;
         if($mensaje) {
             $arError = new Error();
             $arError->setFecha(new \DateTime('now'));
@@ -25,6 +27,8 @@ class ErrorController extends AbstractFOSRestController
             $arError->setArchivo($archivo);
             $arError->setUsuario($usuario);
             $arError->setRuta($ruta);
+            $arError->setTraza($traza);
+            $arError->setEntorno($entorno);
             $em->persist($arError);
             $em->flush();
             return [

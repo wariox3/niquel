@@ -24,11 +24,17 @@ class Error
     #[ORM\Column(type:"text", nullable:true)]
     private $mensaje;
 
+    #[ORM\Column(type:"text", nullable:true)]
+    private $traza;
+
     #[ORM\Column(type:"string", length:100, nullable:true)]
     private $usuario;
 
     #[ORM\Column(type:"string", length:250, nullable:true)]
     private $ruta;
+
+    #[ORM\Column(type:"string", length:100, nullable:true)]
+    private $entorno;
 
     public function getId(): ?int
     {
@@ -118,6 +124,38 @@ class Error
     public function setRuta($ruta): void
     {
         $this->ruta = $ruta;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTraza()
+    {
+        return $this->traza;
+    }
+
+    /**
+     * @param mixed $traza
+     */
+    public function setTraza($traza): void
+    {
+        $this->traza = $traza;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEntorno()
+    {
+        return $this->entorno;
+    }
+
+    /**
+     * @param mixed $entorno
+     */
+    public function setEntorno($entorno): void
+    {
+        $this->entorno = $entorno;
     }
 
 
