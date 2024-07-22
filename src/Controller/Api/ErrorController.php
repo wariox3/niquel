@@ -23,11 +23,12 @@ class ErrorController extends AbstractFOSRestController
             $arError->setArchivo($archivo);
             $em->persist($arError);
             $em->flush();
+            return [
+                'error' => false];
         } else {
             return [
                 'error' => true,
                 'errorMensaje' => "Faltan parametros para el consumo de la api"];
         }
     }
-
 }
