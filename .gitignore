@@ -1,0 +1,24 @@
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+.env
+/nbproject/private/
+/nbproject/*
+/.idea/
+/.idea/*
+composer.lock
+symfony.lock
+/config/packages/sensio_framework_extra.yaml
+/config/bundles.php
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
