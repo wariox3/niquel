@@ -15,14 +15,20 @@ class Error
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(name:"fecha", type:"datetime")]
+    #[ORM\Column(type:"datetime")]
     private $fecha;
 
-    #[ORM\Column(name:"archivo", type:"string", length:500, nullable:true)]
+    #[ORM\Column(type:"string", length:500, nullable:true)]
     private $archivo;
 
-    #[ORM\Column(name:"mensaje", type:"text", nullable:true)]
+    #[ORM\Column(type:"text", nullable:true)]
     private $mensaje;
+
+    #[ORM\Column(type:"string", length:100, nullable:true)]
+    private $usuario;
+
+    #[ORM\Column(type:"string", length:250, nullable:true)]
+    private $ruta;
 
     public function getId(): ?int
     {
@@ -80,6 +86,38 @@ class Error
     public function setMensaje($mensaje): void
     {
         $this->mensaje = $mensaje;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param mixed $usuario
+     */
+    public function setUsuario($usuario): void
+    {
+        $this->usuario = $usuario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRuta()
+    {
+        return $this->ruta;
+    }
+
+    /**
+     * @param mixed $ruta
+     */
+    public function setRuta($ruta): void
+    {
+        $this->ruta = $ruta;
     }
 
 

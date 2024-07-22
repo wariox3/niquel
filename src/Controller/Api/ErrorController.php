@@ -16,11 +16,15 @@ class ErrorController extends AbstractFOSRestController
         $raw = json_decode($request->getContent(), true);
         $archivo = $raw['archivo']??null;
         $mensaje = $raw['mensaje']??null;
-        if($archivo && $mensaje) {
+        $usuario = $raw['usuario']??null;
+        $ruta = $raw['ruta']??null;
+        if($mensaje) {
             $arError = new Error();
             $arError->setFecha(new \DateTime('now'));
             $arError->setMensaje($mensaje);
             $arError->setArchivo($archivo);
+            $arError->setUsuario($usuario);
+            $arError->setRuta($ruta);
             $em->persist($arError);
             $em->flush();
             return [
