@@ -17,6 +17,7 @@ class ErrorRepository extends ServiceEntityRepository
     {
         $em = $this->getEntityManager();
         $limiteRegistros = $raw['limiteRegistros']??100;
+        $entorno = $raw['entorno']??null;
         $queryBuilder = $em->createQueryBuilder()->from(Error::class, 'e')
             ->select('e.id')
             ->addSelect('e.fecha')
@@ -28,6 +29,9 @@ class ErrorRepository extends ServiceEntityRepository
             ->addSelect('e.entorno')
             ->addSelect('e.contenedor')
             ->orderBy('e.fecha', 'DESC');
+        if($entorno) {
+            $queryBuilder->andWhere("e.entorno='{$entorno}'");
+        }
         $queryBuilder->setMaxResults($limiteRegistros);
         return $queryBuilder->getQuery()->getResult();
     }
