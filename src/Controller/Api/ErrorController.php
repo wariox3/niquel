@@ -68,4 +68,19 @@ class ErrorController extends AbstractFOSRestController
         }
         return $this->view(['mensaje' => 'Errores eliminados'], 200);
     }
+
+    #[Route("/api/error/detalle")]
+    public function detalle(Request $request, EntityManagerInterface $em)
+    {
+        $raw = json_decode($request->getContent(), true);
+        $errorId = $raw['errorId']??null;
+        if($errorId) {
+            $arError = $em->getRepository(Error::class)->detalle($errorId);
+            return $this->view(['error' => $arError], 200);
+        } else {
+            return [
+                'error' => true,
+                'errorMensaje' => "Faltan parametros para el consumo de la api"];
+        }
+    }
 }

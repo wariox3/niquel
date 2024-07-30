@@ -35,4 +35,22 @@ class ErrorRepository extends ServiceEntityRepository
         $queryBuilder->setMaxResults($limiteRegistros);
         return $queryBuilder->getQuery()->getResult();
     }
+
+    public function detalle($errorId)
+    {
+        $em = $this->getEntityManager();
+        $queryBuilder = $em->createQueryBuilder()->from(Error::class, 'e')
+            ->select('e.id')
+            ->addSelect('e.fecha')
+            ->addSelect('e.archivo')
+            ->addSelect('e.mensaje')
+            ->addSelect('e.usuario')
+            ->addSelect('e.ruta')
+            ->addSelect('e.traza')
+            ->addSelect('e.entorno')
+            ->addSelect('e.contenedor')
+            ->where("e.id = {$errorId}");
+        $arError =$queryBuilder->getQuery()->getOneOrNullResult();
+        return $arError;
+    }
 }
