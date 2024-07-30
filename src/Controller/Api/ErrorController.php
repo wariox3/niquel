@@ -49,4 +49,23 @@ class ErrorController extends AbstractFOSRestController
         $arErrores = $em->getRepository(Error::class)->lista($raw);
         return $this->view(['errores' => $arErrores], 200);
     }
+
+    #[Route("/api/error/eliminar")]
+    public function eliminar(Request $request, EntityManagerInterface $em)
+    {
+        $raw = json_decode($request->getContent(), true);
+        $errores = $raw['errores']??null;
+        if($errores) {
+            if(is_array($errores)) {
+                foreach ($errores as $error) {
+                    $arError = $em->getRepository(Error::class)->find($error['id']);
+                    if($arError) {
+                        $em->remove($arError);
+                    }
+                }
+                $em->flush();
+            }
+        }
+        return $this->view(['mensaje' => 'Errores eliminados'], 200);
+    }
 }
