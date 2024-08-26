@@ -53,4 +53,17 @@ class ErrorRepository extends ServiceEntityRepository
         $arError =$queryBuilder->getQuery()->getOneOrNullResult();
         return $arError;
     }
+
+    public function resumen()
+    {
+        $em = $this->getEntityManager();
+        $queryBuilder = $em->createQueryBuilder()->from(Error::class, 'e')
+            ->select('count(e.id) erores')
+            ->where("e.entorno = 'prod'");
+        $arError =$queryBuilder->getQuery()->getOneOrNullResult();
+        $resumen = [
+            "prod" => $arError["erores"]??0,
+        ];
+        return $resumen;
+    }
 }
