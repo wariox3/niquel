@@ -27,6 +27,9 @@ class Error
     #[ORM\Column(type:"text", nullable:true)]
     private $traza;
 
+    #[ORM\Column(type: "json", nullable: true)]
+    private $traza_objeto;
+
     #[ORM\Column(type:"string", length:100, nullable:true)]
     private $usuario;
 
@@ -251,6 +254,22 @@ class Error
     public function setPeticion($peticion): void
     {
         $this->peticion = $peticion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrazaObjeto()
+    {
+        return $this->traza_objeto;
+    }
+
+    /**
+     * @param mixed $traza_objeto
+     */
+    public function setTrazaObjeto($traza_objeto): void
+    {
+        $this->traza_objeto = $traza_objeto;
     }
 
 
