@@ -24,10 +24,14 @@ class ErrorRepository extends ServiceEntityRepository
             ->addSelect('e.archivo')
             ->addSelect('e.mensaje')
             ->addSelect('e.usuario')
+            ->addSelect('e.usuario_objeto')
             ->addSelect('e.ruta')
             ->addSelect('e.traza')
             ->addSelect('e.entorno')
             ->addSelect('e.contenedor')
+            ->addSelect('e.contenedor_objeto')
+            ->addSelect('e.data')
+            ->addSelect('e.peticion')
             ->orderBy('e.fecha', 'DESC');
         if($entorno) {
             $queryBuilder->andWhere("e.entorno='{$entorno}'");
@@ -45,10 +49,14 @@ class ErrorRepository extends ServiceEntityRepository
             ->addSelect('e.archivo')
             ->addSelect('e.mensaje')
             ->addSelect('e.usuario')
+            ->addSelect('e.usuario_objeto')
             ->addSelect('e.ruta')
             ->addSelect('e.traza')
             ->addSelect('e.entorno')
             ->addSelect('e.contenedor')
+            ->addSelect('e.contenedor_objeto')
+            ->addSelect('e.data')
+            ->addSelect('e.peticion')
             ->where("e.id = {$errorId}");
         $arError =$queryBuilder->getQuery()->getOneOrNullResult();
         return $arError;
