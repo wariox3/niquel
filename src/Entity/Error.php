@@ -39,6 +39,18 @@ class Error
     #[ORM\Column(type:"string", length:100, nullable:true)]
     private $contenedor;
 
+    #[ORM\Column(type: "json", nullable: true)]
+    private $usuario_objeto;
+
+    #[ORM\Column(type: "json", nullable: true)]
+    private $contenedor_objeto;
+
+    #[ORM\Column(type: "json", nullable: true)]
+    private $data;
+
+    #[ORM\Column(type: "json", nullable: true)]
+    private $peticion;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -175,6 +187,70 @@ class Error
     public function setContenedor($contenedor): void
     {
         $this->contenedor = $contenedor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsuarioObjeto()
+    {
+        return $this->usuario_objeto;
+    }
+
+    /**
+     * @param mixed $usuario_objeto
+     */
+    public function setUsuarioObjeto($usuario_objeto): void
+    {
+        $this->usuario_objeto = $usuario_objeto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContenedorObjeto()
+    {
+        return $this->contenedor_objeto;
+    }
+
+    /**
+     * @param mixed $contenedor_objeto
+     */
+    public function setContenedorObjeto($contenedor_objeto): void
+    {
+        $this->contenedor_objeto = $contenedor_objeto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param mixed $data
+     */
+    public function setData($data): void
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPeticion()
+    {
+        return $this->peticion;
+    }
+
+    /**
+     * @param mixed $peticion
+     */
+    public function setPeticion($peticion): void
+    {
+        $this->peticion = $peticion;
     }
 
 
