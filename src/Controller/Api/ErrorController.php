@@ -20,6 +20,7 @@ class ErrorController extends AbstractFOSRestController
         $usuarioObjeto = $raw['usuario_objeto']??null;
         $ruta = $raw['ruta']??null;
         $traza = $raw['traza']??null;
+        $trazaObjeto = $raw['traza_objeto']??null;
         $entorno = $raw['entorno']??null;
         $contenedor = $raw['contenedor']??null;
         $contenedorObjeto = $raw['contenedor_objeto']??null;
@@ -34,6 +35,7 @@ class ErrorController extends AbstractFOSRestController
             $arError->setData($usuarioObjeto);
             $arError->setRuta($ruta);
             $arError->setTraza($traza);
+            $arError->setTrazaObjeto($trazaObjeto);
             $arError->setEntorno($entorno);
             $arError->setContenedor($contenedor);
             $arError->setContenedorObjeto($contenedorObjeto);
