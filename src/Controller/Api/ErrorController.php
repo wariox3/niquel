@@ -101,4 +101,12 @@ class ErrorController extends AbstractFOSRestController
         $arrResumen = $em->getRepository(Error::class)->resumen();
         return $this->view(['resumen' => $arrResumen], 200);
     }
+
+    #[Route("/api/error/limpiar")]
+    public function limpiar(Request $request, EntityManagerInterface $em)
+    {
+        $raw = json_decode($request->getContent(), true);
+        $em->createQueryBuilder()->delete(Error::class, 'e')->getQuery()->execute();
+        return $this->view(['mensaje' => 'Errores eliminados'], 200);
+    }
 }
