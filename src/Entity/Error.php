@@ -3,9 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ErrorRepository;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
 
 #[ORM\Entity(repositoryClass: ErrorRepository::class)]
 class Error
