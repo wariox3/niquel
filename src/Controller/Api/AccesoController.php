@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\Acceso;
 use App\Entity\Error;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -30,4 +31,9 @@ class AccesoController extends AbstractFOSRestController
         return ['error' => false];
     }
 
+    #[Route("/api/acceso/host", methods: ['GET'])]
+    public function host(Request $request, EntityManagerInterface $em) {
+        $arAccesoHost = $em->getRepository(Acceso::class)->accesoHost();
+        return $this->view(['accesoHost' => $arAccesoHost], 200);
+    }
 }
